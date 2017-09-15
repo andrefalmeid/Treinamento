@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Tempo</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap-4.0.0-beta">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
+  <link rel="stylesheet" href="marketing.css">
+</head>
+<head>
+  <body>
+
+    <div class="splash-container">
+        <div class="splash">
+            <h1 class="splash-head">Tempo Agora</h1>
+            <p class="splash-subhead">
+                Digite o nome da cidade que deseja consultar o tempo
+            </p>
+            <p>
+                <input type="text" size="50" placeholder="Nome da Cidade" required name="name" id="cidade" class="alert alert-dark" role="alert">
+                <button type="button" class="pure-button pure-button-primary" onclick="cidade()">Buscar</button>
+            </p>
+        </div>
+    </div>
+
+    <div class="content-wrapper"><a href="#" id="foo"></a>
+        <div class="content">
+            <h2 class="content-head is-center"id="form_cidade">Previsão do tempo para </h2>
+
+    <div class="pure-g">
+      <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+            <div class="row">
+                <div class="col-sm-4">
+      <img src="https://icon-icons.com/icons2/1238/PNG/512/planetearth_83728.png"alt="Icon" width="200px"height="200px">
+        </div>
+          <div class="col-sm-8">
+            <h4 id="form_temp">Temperatura:</h4>
+            <h4 id="form_hum">Humidade:</h4>
+            <h4 id="form_tempmin">Temperatura Minima:</h4>
+            <h4 id="form_tempmax">Temperatura Maxima:</h4>
+          </div>
+        </div>
+       </div>
+      </div>
+    </div>
+  </div>
+
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+$("#result").hide();
+$("#load-flash").hide();
+
+function cidade (){
+    var cidade = $("#cidade").val();
+
+$("#form_container").hide();
+$("#load-flash").show();
+$(document).ready(function() {
+window.location.href='#foo';
+});
+  var link ="http://api.openweathermap.org/data/2.5/weather?q="+cidade+"&appid=04363dd3e5be70fc4d55e04d6391ad3e";
+
+  $.getJSON( link,
+    function( data ) {
+      $("#result").show();
+      $("#load-flash").hide();
+      $("#form_cidade").append(data.name);
+      $("#form_temp").append(data.main.temp);
+      $("#form_hum").append(data.main.humidity);
+      $("#form_tempmin").append(data.main.temp_min);
+      $("#form_tempmax").append(data.main.temp_max);
+     });
+}
+</script>
+</body>
+</html>
